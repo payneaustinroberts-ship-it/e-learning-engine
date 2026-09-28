@@ -3,6 +3,8 @@
 A reusable engine that renders a whole course from one JSON config file.
 Content stays in the config; all functionality lives in the engine.
 
+**Live demo:** https://payneaustinroberts-ship-it.github.io/e-learning-engine/demo/ — try both courses in your browser, no LMS needed.
+
 ## What's here
 
 ```

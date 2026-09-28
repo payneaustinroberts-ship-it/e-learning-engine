@@ -13,6 +13,30 @@
   <script src="./src/scorm.js"></script>
   <script src="./src/engine.js"></script>
   <script>
+    // Demo banner (?demo=1): reveals the machinery. The point of the engine
+    // is invisible inside the course itself, so the demo says it out loud.
+    (function () {
+      var params = new URLSearchParams(location.search);
+      if (!params.get('demo')) return;
+      var courseParam = params.get('course') || '';
+      var bar = document.createElement('div');
+      bar.setAttribute('role', 'note');
+      bar.style.cssText = 'position:sticky;top:0;z-index:50;display:flex;flex-wrap:wrap;gap:6px 18px;' +
+        'align-items:center;justify-content:center;background:#0f172a;color:#e2e8f0;' +
+        'font:14px/1.5 -apple-system,"Segoe UI",Roboto,sans-serif;padding:10px 16px;text-align:center;';
+      var html = '<span><strong style="color:#5eead4">E-Learning Engine</strong> demo &mdash; ' +
+        'this entire course was generated from a single JSON config file.</span><span>';
+      if (/^[\w\-./]+\.json$/.test(courseParam)) {
+        var blob = 'https://github.com/payneaustinroberts-ship-it/e-learning-engine/blob/main/' +
+          courseParam.replace(/^\.\//, '');
+        html += '<a style="color:#5eead4" href="' + blob + '">View the JSON</a> &middot; ';
+      }
+      html += '<a style="color:#5eead4" href="./demo/">What is this?</a></span>';
+      bar.innerHTML = html;
+      document.body.insertBefore(bar, document.body.firstChild);
+    })();
+  </script>
+  <script>
     (function () {
       // Dev default: demo course. A built SCORM package ships config.json
       // next to this file, which is found first.

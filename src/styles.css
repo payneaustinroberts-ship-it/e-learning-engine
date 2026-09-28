@@ -1,0 +1,188 @@
+/* e-learning engine — default theme (v0.2.0)
+ * Config branding overrides these via CSS variables set on the mount node.
+ * Contrast-checked defaults; keep any custom brand colors at 4.5:1 for text. */
+
+.el {
+  --el-primary: #0F766E;
+  --el-accent: #B45309;
+  --el-bg: #FFFFFF;
+  --el-text: #1F2937;
+  --el-font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --el-muted: #6B7280;
+  --el-border: #E5E7EB;
+  --el-correct: #15803D;
+  --el-correct-bg: #F0FDF4;
+  --el-wrong: #B91C1C;
+  --el-wrong-bg: #FEF2F2;
+
+  font-family: var(--el-font);
+  background: var(--el-bg);
+  color: var(--el-text);
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 24px 20px 40px;
+  line-height: 1.6;
+  box-sizing: border-box;
+}
+.el * { box-sizing: border-box; }
+
+/* top bar + progress */
+.el-topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 28px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--el-border);
+}
+.el-course-title { font-weight: 700; font-size: 15px; display: flex; align-items: center; gap: 10px; }
+.el-logo { height: 28px; width: auto; display: block; }
+.el-progress-wrap { min-width: 200px; flex: 1; max-width: 320px; }
+.el-progress-label { font-size: 12px; color: var(--el-muted); margin-bottom: 6px; text-align: right; }
+.el-progress { height: 8px; background: var(--el-border); border-radius: 999px; overflow: hidden; }
+.el-progress-fill { height: 100%; background: var(--el-primary); border-radius: 999px; transition: width 0.3s ease; }
+
+/* headings + body */
+.el-heading { font-size: 28px; line-height: 1.25; margin: 0 0 16px; }
+.el-heading:focus { outline: none; }
+.el-h2 { font-size: 20px; margin: 28px 0 12px; }
+.el-prompt { font-size: 18px; margin: 0 0 20px; }
+.el-scenario-prompt {
+  background: #F8FAFC;
+  border-left: 4px solid var(--el-primary);
+  padding: 16px 18px;
+  border-radius: 0 8px 8px 0;
+}
+.el-text p { margin: 0 0 14px; }
+.el-list { margin: 0 0 18px; padding-left: 24px; }
+.el-list li { margin-bottom: 8px; }
+.el-callout {
+  background: #FFFBEB;
+  border: 1px solid #FDE68A;
+  border-left: 4px solid var(--el-accent);
+  border-radius: 8px;
+  padding: 14px 18px;
+  margin: 0 0 18px;
+}
+.el-media { margin: 0 0 20px; }
+.el-media img, .el-media video { max-width: 100%; border-radius: 8px; display: block; }
+.el-media figcaption { font-size: 13px; color: var(--el-muted); margin-top: 8px; }
+
+/* multiple choice */
+.el-legend { font-weight: 700; margin-bottom: 10px; padding: 0; }
+.el-options { border: 0; padding: 0; margin: 0 0 8px; }
+.el-option {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  border: 2px solid var(--el-border);
+  border-radius: 10px;
+  padding: 14px 16px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  transition: border-color 0.15s ease;
+}
+.el-option:hover { border-color: var(--el-primary); }
+.el-option input { margin-top: 4px; width: 18px; height: 18px; accent-color: var(--el-primary); }
+.el-option.is-correct { border-color: var(--el-correct); background: var(--el-correct-bg); }
+.el-option.is-wrong { border-color: var(--el-wrong); background: var(--el-wrong-bg); }
+.el-option.is-correct-answer { border-color: var(--el-correct); border-style: dashed; }
+
+/* scenario choices */
+.el-choices { display: grid; gap: 12px; margin: 0 0 8px; }
+.el-choice {
+  text-align: left;
+  font: inherit;
+  background: #FFFFFF;
+  border: 2px solid var(--el-border);
+  border-radius: 10px;
+  padding: 16px 18px;
+  cursor: pointer;
+  transition: border-color 0.15s ease, transform 0.1s ease;
+}
+.el-choice:hover { border-color: var(--el-primary); }
+.el-choice:active { transform: scale(0.99); }
+
+/* feedback */
+.el-feedback { margin-top: 16px; }
+.el-verdict { font-weight: 600; margin: 0; padding: 12px 16px; border-radius: 8px; }
+.el-verdict.is-correct { background: var(--el-correct-bg); color: var(--el-correct); }
+.el-verdict.is-wrong { background: var(--el-wrong-bg); color: var(--el-wrong); }
+.el-consequence {
+  background: #F8FAFC;
+  border: 1px solid var(--el-border);
+  border-radius: 8px;
+  padding: 14px 18px;
+  margin: 0;
+}
+
+/* footer nav */
+.el-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 32px;
+  padding-top: 20px;
+  border-top: 1px solid var(--el-border);
+}
+.el-btn {
+  font: inherit;
+  font-weight: 600;
+  border-radius: 10px;
+  padding: 12px 24px;
+  cursor: pointer;
+  border: 2px solid transparent;
+}
+.el-btn-primary { background: var(--el-primary); color: #FFFFFF; }
+.el-btn-primary:hover { filter: brightness(0.92); }
+.el-btn-ghost { background: transparent; color: var(--el-text); border-color: var(--el-border); }
+.el-btn-ghost:hover:not(:disabled) { border-color: var(--el-text); }
+.el-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+.el-btn:focus-visible, .el-choice:focus-visible, .el-option:focus-within {
+  outline: 3px solid var(--el-primary);
+  outline-offset: 2px;
+}
+
+/* results */
+.el-result-banner {
+  display: inline-block;
+  font-weight: 700;
+  font-size: 15px;
+  padding: 8px 18px;
+  border-radius: 999px;
+  margin-bottom: 16px;
+}
+.el-result-banner.is-pass { background: var(--el-correct-bg); color: var(--el-correct); border: 2px solid var(--el-correct); }
+.el-result-banner.is-fail { background: var(--el-wrong-bg); color: var(--el-wrong); border: 2px solid var(--el-wrong); }
+.el-score { margin: 8px 0 16px; }
+.el-score-num { display: block; font-size: 56px; font-weight: 800; line-height: 1; }
+.el-score-sub { color: var(--el-muted); font-size: 14px; }
+.el-result-msg { font-size: 17px; }
+.el-certificate {
+  border: 3px double var(--el-primary);
+  border-radius: 12px;
+  padding: 28px;
+  text-align: center;
+  margin: 28px 0;
+}
+.el-cert-title { font-size: 22px; font-weight: 800; margin-bottom: 8px; }
+.el-cert-body { margin-bottom: 12px; }
+.el-cert-meta { color: var(--el-muted); font-size: 13px; }
+.el-resources ul { padding-left: 24px; }
+.el-resources a { color: var(--el-primary); }
+
+/* resume gate */
+.el-gate-actions { display: flex; gap: 12px; margin-top: 24px; flex-wrap: wrap; }
+
+/* config error screen (authoring aid) */
+.el-error-list { background: var(--el-wrong-bg); border: 1px solid var(--el-wrong); border-radius: 8px; padding: 16px 16px 16px 36px; }
+.el-error-list code { font-weight: 700; }
+
+@media (max-width: 520px) {
+  .el { padding: 16px 14px 32px; }
+  .el-heading { font-size: 23px; }
+  .el-footer { flex-direction: column-reverse; gap: 10px; }
+  .el-btn { width: 100%; }
+}

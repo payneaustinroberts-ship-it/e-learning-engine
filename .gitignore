@@ -1,0 +1,12 @@
+# Build output (regenerate with: node build.js --course <name>)
+dist/
+
+# Dependencies (reinstall with: cd qa && npm install)
+node_modules/
+qa/node_modules/
+
+# OS / editor noise
+.DS_Store
+Thumbs.db
+.vscode/
+*.log

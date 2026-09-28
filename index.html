@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Loading course…</title>
+  <link rel="stylesheet" href="./src/styles.css">
+</head>
+<body>
+  <div id="engine-root"></div>
+
+  <script src="./src/validation.js"></script>
+  <script src="./src/scorm.js"></script>
+  <script src="./src/engine.js"></script>
+  <script>
+    (function () {
+      // Dev default: demo course. A built SCORM package ships config.json
+      // next to this file, which is found first.
+      var candidates = ['./config.json', './courses/demo-course/config.json'];
+      var params = new URLSearchParams(location.search);
+      if (params.get('course')) candidates.unshift(params.get('course'));
+
+      function tryNext(i) {
+        if (i >= candidates.length) {
+          document.getElementById('engine-root').innerHTML =
+            '<p style="font-family:sans-serif;padding:40px">Could not load a course config. ' +
+            'Serve this folder with VS Code Live Server and open index.html.</p>';
+          return;
+        }
+        fetch(candidates[i])
+          .then(function (r) { if (!r.ok) throw new Error('not found'); return r.json(); })
+          .then(function (cfg) {
+            LearningEngine.start(cfg, document.getElementById('engine-root'));
+          })
+          .catch(function () { tryNext(i + 1); });
+      }
+      tryNext(0);
+    })();
+  </script>
+</body>
+</html>

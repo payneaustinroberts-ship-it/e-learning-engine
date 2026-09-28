@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>E-Learning Engine — Live Demo</title>
+  <meta name="description" content="A config-driven e-learning engine: one validated JSON file renders a complete, accessible, SCORM-ready course. Try both demo courses.">
+  <style>
+    :root {
+      --bg: #0f172a;
+      --bg-soft: #1e293b;
+      --card: #ffffff;
+      --ink: #0f172a;
+      --muted: #64748b;
+      --teal: #0f766e;
+      --teal-dark: #115e59;
+      --amber: #b45309;
+      --line: #e2e8f0;
+      --radius: 14px;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      color: var(--ink);
+      background: #f8fafc;
+      line-height: 1.6;
+    }
+    .hero {
+      background: linear-gradient(135deg, #0f172a 0%, #134e4a 60%, #0f766e 100%);
+      color: #fff;
+      padding: 64px 24px 56px;
+      text-align: center;
+    }
+    .hero h1 { margin: 0 0 12px; font-size: clamp(1.8rem, 4vw, 2.6rem); letter-spacing: -0.02em; }
+    .hero p.lede { max-width: 640px; margin: 0 auto; font-size: 1.1rem; color: #ccfbf1; }
+    .pill-row { margin-top: 20px; display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+    .pill {
+      font-size: 0.8rem; padding: 6px 14px; border-radius: 999px;
+      background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.25);
+      color: #f0fdfa; white-space: nowrap;
+    }
+    main { max-width: 960px; margin: 0 auto; padding: 40px 24px 64px; }
+    h2.section { font-size: 1.4rem; margin: 40px 0 16px; letter-spacing: -0.01em; }
+    .cards { display: grid; grid-template-columns: 1fr; gap: 20px; }
+    @media (min-width: 720px) { .cards { grid-template-columns: 1fr 1fr; } }
+    .card {
+      background: var(--card); border: 1px solid var(--line); border-radius: var(--radius);
+      padding: 28px; display: flex; flex-direction: column; gap: 12px;
+      box-shadow: 0 1px 3px rgba(15,23,42,0.06);
+    }
+    .card .theme-dot { width: 100%; height: 8px; border-radius: 999px; }
+    .card h3 { margin: 0; font-size: 1.2rem; }
+    .card p.desc { margin: 0; color: var(--muted); font-size: 0.95rem; flex: 1; }
+    .meta { display: flex; gap: 14px; flex-wrap: wrap; font-size: 0.82rem; color: var(--muted); }
+    .meta strong { color: var(--ink); }
+    .btn {
+      display: inline-block; text-align: center; text-decoration: none;
+      background: var(--teal); color: #fff; font-weight: 600;
+      padding: 12px 22px; border-radius: 10px; margin-top: 6px;
+      transition: background 0.15s ease;
+    }
+    .btn:hover, .btn:focus-visible { background: var(--teal-dark); }
+    .btn.secondary { background: var(--amber); }
+    .btn.secondary:hover, .btn.secondary:focus-visible { background: #92400e; }
+    .how { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 28px; }
+    .how ol { margin: 0; padding-left: 22px; display: grid; gap: 10px; }
+    .how code { background: #f1f5f9; padding: 2px 8px; border-radius: 6px; font-size: 0.88em; }
+    .grid-3 { display: grid; grid-template-columns: 1fr; gap: 14px; margin-top: 16px; }
+    @media (min-width: 720px) { .grid-3 { grid-template-columns: repeat(3, 1fr); } }
+    .fact { background: var(--bg-soft); color: #e2e8f0; border-radius: var(--radius); padding: 20px; }
+    .fact h4 { margin: 0 0 6px; color: #5eead4; font-size: 0.95rem; }
+    .fact p { margin: 0; font-size: 0.88rem; color: #cbd5e1; }
+    footer { text-align: center; color: var(--muted); font-size: 0.85rem; padding: 24px; }
+    footer a { color: var(--teal); }
+    .note {
+      margin-top: 20px; font-size: 0.85rem; color: var(--muted);
+      background: #fffbeb; border: 1px solid #fde68a; border-radius: 10px; padding: 14px 18px;
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <h1>Config-Driven E-Learning Engine</h1>
+    <p class="lede">One validated JSON file renders a complete, accessible, SCORM-ready course — content, knowledge checks, branched scenarios, scoring, certificates, and resume. Zero dependencies.</p>
+    <div class="pill-row" aria-label="Engine capabilities">
+      <span class="pill">JSON Schema validated</span>
+      <span class="pill">SCORM 1.2</span>
+      <span class="pill">Accessible by default</span>
+      <span class="pill">Save / resume</span>
+      <span class="pill">Per-course theming</span>
+      <span class="pill">No dependencies</span>
+    </div>
+  </header>
+
+  <main>
+    <h2 class="section">Try the demo courses</h2>
+    <p style="color: var(--muted); margin-top: 0;">Both courses run on the same untouched engine code — that's the point. Pick one and click through it like a learner would.</p>
+
+    <div class="cards">
+      <article class="card">
+        <div class="theme-dot" style="background: linear-gradient(90deg, #0f766e, #b45309);" aria-hidden="true"></div>
+        <h3>Workplace Safety: Slips, Trips &amp; Falls</h3>
+        <p class="desc">Learn a 3-step spill response, take a knowledge check, then make a real decision in a branched scenario where your choice changes what happens next.</p>
+        <div class="meta">
+          <span><strong>5</strong> screens</span>
+          <span><strong>~8</strong> min</span>
+          <span><strong>70%</strong> to pass</span>
+          <span>Certificate on pass</span>
+        </div>
+        <a class="btn" href="../index.html?course=./courses/demo-course/config.json">Launch demo</a>
+      </article>
+
+      <article class="card">
+        <div class="theme-dot" style="background: linear-gradient(90deg, #164e63, #c2410c);" aria-hidden="true"></div>
+        <h3>Difficult Customer Conversations: De-escalation Basics</h3>
+        <p class="desc">Two knowledge checks and a three-branch scenario with weighted scoring — including a choice that loses points. Same engine, completely different look, logo, and content.</p>
+        <div class="meta">
+          <span><strong>6</strong> screens</span>
+          <span><strong>~10</strong> min</span>
+          <span><strong>80%</strong> to pass</span>
+          <span>Certificate on pass</span>
+        </div>
+        <a class="btn secondary" href="../index.html?course=./courses/deescalation-basics/config.json">Launch demo</a>
+      </article>
+    </div>
+
+    <div class="note" role="note">
+      These demos run without an LMS, so progress saves in this browser (local storage) instead of SCORM. In production the same courses report completion, score, and suspend-data to any SCORM 1.2 LMS — verified on SCORM Cloud.
+    </div>
+
+    <h2 class="section">How it works</h2>
+    <div class="how">
+      <ol>
+        <li><strong>Author</strong> a course as <code>config.json</code> — screens, questions, branches, scoring, theme, and certificate in one file.</li>
+        <li><strong>Validate</strong> it against the JSON Schema. Bad configs fail loudly at build time with exact paths — never silently in front of a learner.</li>
+        <li><strong>Render</strong> it with the engine: semantic HTML, focus management, live-region feedback, and required alt text on all media.</li>
+        <li><strong>Ship</strong> it as a SCORM 1.2 package (<code>node build.js --course &lt;name&gt;</code>) or as a plain web page like this one.</li>
+      </ol>
+    </div>
+
+    <h2 class="section">Under the hood</h2>
+    <div class="grid-3">
+      <div class="fact">
+        <h4>Hand-rolled validator</h4>
+        <p>Cross-reference checks, unreachable-screen detection, and alt-text enforcement run identically in the player and the build script.</p>
+      </div>
+      <div class="fact">
+        <h4>4KB state budget</h4>
+        <p>SCORM 1.2 suspend-data holds deltas only — screen IDs and scores, never content. Demo payloads measured under 700 bytes.</p>
+      </div>
+      <div class="fact">
+        <h4>Real LMS proof</h4>
+        <p>Both courses passed SCORM Cloud testing: completion, success status, and score all reported correctly, including resume-after-relaunch.</p>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    Built by <a href="https://github.com/payneaustinroberts-ship-it">Payne Roberts</a> ·
+    <a href="https://github.com/payneaustinroberts-ship-it/e-learning-engine">Source on GitHub</a> ·
+    Engine v0.2.0
+  </footer>
+</body>
+</html>
